@@ -1,0 +1,5 @@
+row_idx,column,is_negative
+11,land_use_change,True
+19,land_use_change,True
+25,land_use_change,True
+29,land_use_change,True
