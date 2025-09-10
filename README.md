@@ -1,282 +1,146 @@
-<<<<<<< HEAD
-#  Transborder Freight Analysis Project
+# Food Production Analysis — Environmental Impacts
 
-This project analyzes transborder freight data between the U.S., Canada, and Mexico to uncover trends, inefficiencies, and insights across transport modes, commodities, trade partners, and corridors. It applies data science techniques to inform infrastructure planning, trade strategy, and policy decisions.
-
----
-
-##  Project Objectives
-
-- Analyze freight movement patterns by transport mode, region, commodity, and time.
-- Identify operational inefficiencies and cost anomalies.
-- Assess environmental and safety-related impacts.
-- Evaluate the effects of external shocks (e.g., policy changes).
-- Provide actionable recommendations for stakeholders.
+A data science project to identify which **foods** and which **lifecycle stages** (farm/feed, processing, transport, packaging, retail) drive the largest environmental burdens — and to recommend the **highest-leverage actions** (dietary swaps, sourcing, logistics/packaging) that reduce impact without undermining nutrition or cost.
 
 ---
 
-##  Business Questions
+## Project Overview
 
-1. **What are the dominant transport modes (road, rail, air, water) over time, and how do their freight volumes compare annually and monthly?**  
-   - 1.1. How does the distribution of freight volume vary by commodity type over time and mode?  
-   - 1.2. Which origin-destination (OD) pairs or corridors have the highest freight movement, and how have they changed over time?
+We analyze a curated food-impact dataset to answer eight stakeholder-oriented business questions and produce clear, actionable recommendations for policy, procurement/retail, producers, and consumers. The analysis is implemented in Jupyter Notebooks with concise, stakeholder-friendly visuals (annotated bars; long labels auto-wrapped; numeric axes hidden where not needed).
 
-2. **Which commodities contribute the most to freight value and volume across different modes and trade partners (US, Canada, Mexico)?**
-
-3. **Which origin-destination (OD) corridors or regions handle the largest freight volumes, and how have these patterns changed over time?**
-
-4. **Are there inefficiencies or cost anomalies in freight transport, such as unusually high freight charges relative to shipment weight or value?**
-
-5. **Which commodities have seen the most growth or decline in freight volume or value in the past 5 years?**
+**Key metrics**
+- **GHG intensity** (kg CO₂e per kg; and optionally per 1,000 kcal / per 100 g protein)
+- **Water** (freshwater withdrawals; scarcity-weighted water use)
+- **Land use**
+- **Lifecycle stage shares** (land-use change, animal feed, farm, processing, transport, packaging, retail)
 
 ---
 
+## Repository Contents
 
-## 🔗 Data Access
+- `Business & Data Understanding.ipynb` — stakeholder brief, KPIs, lean data profiling (details in appendix)
+- `EDA.ipynb` — data cleaning + EDA that answers **Q1–Q8** end-to-end
+- `Food_Production.csv` — source data
+- `Food_Production_clean.csv` — cleaned export (produced by notebook)
+- `Food_Production_negative_values.csv` — QA export for inspection (if produced)
 
-The cleaned datasets used in this project are hosted on Google Drive.  
- [**Click here to access the data**](https://drive.google.com/drive/folders/1GrS6TwpOqdmMyVTh6MO642YxO4y1Peqm?usp=sharing)  
-
-
-Download the files and place them in the `data/` directoryroot of the project folder before running any notebooks.
-
----
-
-##  Setup Instructions
-
-### 1. Clone the repository
-
-
-git clone https://github.com/your-username/transborder-freight-analysis.git
-cd transborder-freight-analysis
-
-### 2. Create a virtual environment
-
-python -m venv env
-# Activate the environment
-source env/bin/activate        # On Mac/Linux
-env\Scripts\activate           # On Windows
-
-### 3. Install dependencies
-
-pip install -r requirements.txt
-
-### 4. Download the data
-Use the Google Drive link to download the datasets.
-
-## Project Workflow
-
-Step 1: Data Understanding
-Loaded .csv data chunks from deduped files.
-
-Reviewed features like MODE, SHIPWT, COMMODITY2, VALUE.
-
-Identified trends and inconsistencies.
-
-Step 2: Data Cleaning
-- Removed nulls and filled relevant columns.
-
-- Converted data types, deduplicated entries.
-
-- Validated row counts per chunk.
-
-Step 3: Exploratory Data Analysis (EDA)
-Aggregated yearly and monthly shipment volumes.
-
-Compared freight volume by mode.
-
-Analyzed commodity distribution across countries.
-
-Step 4: Business Questions Answered
-Q1: Dominant Transport Modes & OD Corridors
-
-Q2: Top Commodities by Value & Volume
-
-Q3: Largest Freight Corridors
-
-Q4: Freight Inefficiencies
-
-Q5: Growth/Decline in Commodities
-
-Tools & Technologies
-Python (pandas, seaborn, matplotlib)
-
-Jupyter Notebooks
-
-Google Drive (Data Storage)
-
-Git & GitHub (Version Control)
-
-
-
- ## Dependencies
-This project uses the following Python libraries:
-
-pandas
-
-numpy
-
-matplotlib
-
-seaborn
-
-plotly 
-
-All dependencies are listed in requirements.txt.
-
-🙋‍♀️ Contributors
-Feel free to fork, submit pull requests, or create issues to suggest improvements.
-
-📬 Contact
-For questions or feedback, please reach out via:
-📧 agyirnanagmail.com
-
-
-
-
-
-
-
-=======
-#  Transborder Freight Analysis Project
-
-This project analyzes transborder freight data between the U.S., Canada, and Mexico to uncover trends, inefficiencies, and insights across transport modes, commodities, trade partners, and corridors. It applies data science techniques to inform infrastructure planning, trade strategy, and policy decisions.
+> If your file names differ, keep them. The notebooks auto-detect column names with robust matching; you can hard-map if needed.
 
 ---
 
-##  Project Objectives
+## Quick Start
 
-- Analyze freight movement patterns by transport mode, region, commodity, and time.
-- Identify operational inefficiencies and cost anomalies.
-- Assess environmental and safety-related impacts.
-- Evaluate the effects of external shocks (e.g., policy changes).
-- Provide actionable recommendations for stakeholders.
+### 1) Create and activate a virtual environment
 
----
+**Windows (PowerShell):**
+```ps1
+python -m venv .venv
+. .venv\Scripts\Activate.ps1
+```
 
-##  Business Questions
+**macOS / Linux:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-1. **What are the dominant transport modes (road, rail, air, water) over time, and how do their freight volumes compare annually and monthly?**  
-   - 1.1. How does the distribution of freight volume vary by commodity type over time and mode?  
-   - 1.2. Which origin-destination (OD) pairs or corridors have the highest freight movement, and how have they changed over time?
+### 2) Install core dependencies
+```bash
+pip install jupyter pandas numpy matplotlib
+```
 
-2. **Which commodities contribute the most to freight value and volume across different trade partners (US, Canada, Mexico)?**
+*(Optional)* Save your exact environment:
+```bash
+pip freeze > requirements.txt
+```
 
-3. **Which origin-destination (OD) corridors or regions handle the largest freight volumes, and how have these patterns changed over time?**
-
-4. **Are there inefficiencies or cost anomalies in freight transport, such as unusually high freight charges relative to shipment weight or value?**
-
-5. **Which commodities have seen the most growth or decline in freight volume or value in the past 5 years?**
-
----
-
-
-## 🔗 Data Access
-
-The cleaned datasets used in this project are hosted on Google Drive.  
- [**Click here to access the data**](https://drive.google.com/drive/folders/1GrS6TwpOqdmMyVTh6MO642YxO4y1Peqm?usp=sharing)  
-
-
-Download the files and place them in the `data/` directoryroot of the project folder before running any notebooks.
+### 3) Launch notebooks
+```bash
+jupyter lab   # or: jupyter notebook
+```
+Open **`Business & Data Understanding.ipynb`** first, then **`EDA.ipynb`**.
 
 ---
 
-##  Setup Instructions
+## Business Questions (BQ)
 
-### 1. Clone the repository
+1. Which foods are highest/lowest impact by **GHG per kg**? (and optionally per **1,000 kcal** / **100 g protein**)  
+2. Which **lifecycle stages** dominate impacts for each food?  
+3. **Pareto leverage**: which **8–10 foods** account for ~**80%** of total GHG, and what stage drives each?  
+4. **Water risk**: which foods have extreme **scarcity-weighted water** use, and where do **withdrawals** cluster?  
+5. **Dietary swaps**: which realistic substitutions (e.g., **beef → poultry/legumes**; **dairy → plant milks**) yield the largest per-serving reductions?  
+6. **Transport & packaging** sensitivity: which foods have these stages **>10–15%** of total GHG?  
+7. **Consistency trade-offs**: do lower-GHG foods sometimes have **higher water or land** footprints? What’s the **recommended balance**?  
+8. **Scenario impact**: if a retailer shifts **X%** of sales from **high-** to **medium-impact** foods, what is the projected **GHG/water reduction**?
 
+---
 
-git clone https://github.com/your-username/transborder-freight-analysis.git
-cd transborder-freight-analysis
+## How the Analysis Works
 
-### 2. Create a virtual environment
+1. **Business & Data Understanding**  
+   - Stakeholders, decisions, KPIs, and the 8 questions.  
+   - Lean data profiling (types, missingness, ranges); detailed tables parked in an appendix cell.
 
-python -m venv env
-# Activate the environment
-source env/bin/activate        # On Mac/Linux
-env\Scripts\activate           # On Windows
+2. **Data Cleaning (in `EDA.ipynb`)**  
+   - Label standardization (short, readable names).  
+   - Numeric coercion with `safe_num` helpers; handling of zeros/negatives (QA export optional).  
+   - Build `ghg_total_perkg` by summing stage columns if a total is missing.  
+   - Robust column detection for water/land/stages even when names vary.
 
-### 3. Install dependencies
+3. **EDA answering Q1–Q8**  
+   - Compact, annotated bar charts and stacked shares (dominant stage per food).  
+   - Pareto chart (smallest set of foods hitting ~80% of GHG) with **driver stage** labels.  
+   - Water risk: Top-N extremes & log-histogram of withdrawals (Q4).  
+   - Swaps: per-serving reduction charts on protein/kcal bases (Q5).  
+   - Transport/packaging sensitivity lists and stacked shares (Q6).  
+   - Trade-off scatters (GHG vs water/land) and “balanced picks” (Q7).  
+   - Scenario reallocation (High→Medium) with baseline vs scenario KPI bars (Q8).
 
-pip install -r requirements.txt
+---
 
-### 4. Download the data
-Use the Google Drive link to download the datasets.
+## Configuration (edit at the top of `EDA.ipynb`)
 
-## Project Workflow
+- `BIZ_TOPN = 10` — how many items to show in Top/Bottom charts  
+- **Q6 thresholds**: `THRESH_MAIN = 0.15` (15%); monitor band `0.10–0.15`  
+- **Q7 cutoffs**: Low GHG = `P30`; High water/land = `P70`  
+- **Q8 scenario**:  
+  - `SHIFT_PCT = 0.20` (shift 20% of High-bucket sales into Medium)  
+  - Buckets by GHG quantiles: `LO_Q = 0.40`, `HI_Q = 0.70`  
+  - **Sales weights**: include a column like `sales_share` (0–1). If absent, equal weights are used.
 
-Step 1: Data Understanding
-Loaded .csv data chunks from deduped files.
+---
 
-Reviewed features like MODE, SHIPWT, COMMODITY2, VALUE.
+## Interpreting Results (what to expect)
 
-Identified trends and inconsistencies.
+- **Spread**: large differences in GHG per kg across foods (often ~×200).  
+- **Concentration**: a **small set (~8 foods)** typically drives **~80%** of total GHG.  
+- **Driver stages**: **Farm/Feed** dominates for heavy hitters; **Transport/Packaging** matters for specific produce.  
+- **Water risk**: a few foods (e.g., nuts/oils/dairy/meats) are extreme on **scarcity-weighted water**; withdrawals show a median cluster with a long high tail.  
+- **Swaps**: **Beef/Lamb → Poultry/Legumes**, **Dairy milk → Plant milks**, **Shrimp → Fish/Poultry** deliver the largest per-serving reductions.  
+- **Scenario**: shifting **~20%** of sales from **High→Medium** reduces portfolio **GHG & water** (see your notebook prints for exact %s based on your weights).
 
-Step 2: Data Cleaning
-- Removed nulls and filled relevant columns.
+> Replace the above bullets with your actual notebook outputs (the summary cell at the end of `EDA.ipynb` prints them).
 
-- Converted data types, deduplicated entries.
+---
 
-- Validated row counts per chunk.
+## Recommendations
 
-Step 3: Exploratory Data Analysis (EDA)
-Aggregated yearly and monthly shipment volumes.
+- **Diet & product mix**: Prioritize the swaps above; spotlight “balanced choices” (low GHG and not high water/land) in menus/assortment.  
+- **Sourcing & on-farm**: For leverage foods, work supplier side on feed, fertilizer, manure, irrigation, and land-use practices.  
+- **Transport & packaging**: For items ≥10–15%, optimize mode/routes/cold chain and right-size/retune packaging.  
+- **Portfolio policy**: Adopt the High→Medium shift (e.g., 20%) and track KPI reductions quarterly; run ±5–10 pp sensitivities.
 
-Compared freight volume by mode.
+---
 
-Analyzed commodity distribution across countries.
+## Reproducibility
 
-Step 4: Business Questions Answered
-
-Q1: Dominant Transport Modes & OD Corridors
-
-Q2: Top Commodities by Value & Volume
-
-Q3: Largest Freight Corridors
-
-Q4: Freight Inefficiencies
-
-Q5: Growth/Decline in Commodities
-
-Tools & Technologies
-Python (pandas, seaborn, matplotlib)
-
-Jupyter Notebooks
-
-Google Drive (Data Storage)
-
-Git & GitHub (Version Control)
-
-
-
- ## Dependencies
-This project uses the following Python libraries:
-
-pandas
-
-numpy
-
-matplotlib
-
-seaborn
-
-plotly 
-
-All dependencies are listed in requirements.txt.
-
-🙋‍♀️ Contributors
-Feel free to fork, submit pull requests, or create issues to suggest improvements.
-
-📬 Contact
-For questions or feedback, please reach out via:
-📧 agyirnana@gmail.com
+- Export exact environment:
+```bash
+pip freeze > requirements.txt
+```
+- Keep thresholds/config in a single “Config” cell.  
+- Save figures as needed for slides (e.g., `reports/figures/` if you add that folder).  
+- Commit with clear messages linking changes to business questions.
 
 
 
-
-
-
-
-
-
->>>>>>> 858f908389f6061b9d0c14893b46110d1ae084ad
