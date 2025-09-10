@@ -24,7 +24,6 @@ We analyze a curated food-impact dataset to answer eight stakeholder-oriented bu
 - `Food_Production_clean.csv` — cleaned export (produced by notebook)
 - `Food_Production_negative_values.csv` — QA export for inspection (if produced)
 
-> If your file names differ, keep them. The notebooks auto-detect column names with robust matching; you can hard-map if needed.
 
 ---
 
@@ -64,7 +63,7 @@ Open **`Business & Data Understanding.ipynb`** first, then **`EDA.ipynb`**.
 
 ## Business Questions (BQ)
 
-1. Which foods are highest/lowest impact by **GHG per kg**? (and optionally per **1,000 kcal** / **100 g protein**)  
+1. Which foods are highest/lowest impact by **GHG per kg**, per **1,000 kcal** / **100 g protein**)  
 2. Which **lifecycle stages** dominate impacts for each food?  
 3. **Pareto leverage**: which **8–10 foods** account for ~**80%** of total GHG, and what stage drives each?  
 4. **Water risk**: which foods have extreme **scarcity-weighted water** use, and where do **withdrawals** cluster?  
@@ -96,17 +95,6 @@ Open **`Business & Data Understanding.ipynb`** first, then **`EDA.ipynb`**.
    - Trade-off scatters (GHG vs water/land) and “balanced picks” (Q7).  
    - Scenario reallocation (High→Medium) with baseline vs scenario KPI bars (Q8).
 
----
-
-## Configuration (edit at the top of `EDA.ipynb`)
-
-- `BIZ_TOPN = 10` — how many items to show in Top/Bottom charts  
-- **Q6 thresholds**: `THRESH_MAIN = 0.15` (15%); monitor band `0.10–0.15`  
-- **Q7 cutoffs**: Low GHG = `P30`; High water/land = `P70`  
-- **Q8 scenario**:  
-  - `SHIFT_PCT = 0.20` (shift 20% of High-bucket sales into Medium)  
-  - Buckets by GHG quantiles: `LO_Q = 0.40`, `HI_Q = 0.70`  
-  - **Sales weights**: include a column like `sales_share` (0–1). If absent, equal weights are used.
 
 ---
 
@@ -119,7 +107,6 @@ Open **`Business & Data Understanding.ipynb`** first, then **`EDA.ipynb`**.
 - **Swaps**: **Beef/Lamb → Poultry/Legumes**, **Dairy milk → Plant milks**, **Shrimp → Fish/Poultry** deliver the largest per-serving reductions.  
 - **Scenario**: shifting **~20%** of sales from **High→Medium** reduces portfolio **GHG & water** (see your notebook prints for exact %s based on your weights).
 
-> Replace the above bullets with your actual notebook outputs (the summary cell at the end of `EDA.ipynb` prints them).
 
 ---
 
@@ -138,9 +125,7 @@ Open **`Business & Data Understanding.ipynb`** first, then **`EDA.ipynb`**.
 ```bash
 pip freeze > requirements.txt
 ```
-- Keep thresholds/config in a single “Config” cell.  
-- Save figures as needed for slides (e.g., `reports/figures/` if you add that folder).  
-- Commit with clear messages linking changes to business questions.
+
 
 
 
